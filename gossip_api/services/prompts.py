@@ -1,9 +1,9 @@
 class Prompts:
-  def __init__(self,web_sorce, text ):
-    self.web_sorce = web_sorce
-    self.text = text
-    self.prompts ={
-      "youtube" : f""" 
+    def __init__(self, web_sorce, text):
+        self.web_sorce = web_sorce
+        self.text = text
+        self.prompts = {
+            "youtube": f""" 
         Por favor, faça um resumo do perfil do YouTube a partir do seguinte texto:
 
         [{self.text}]
@@ -43,8 +43,7 @@ class Prompts:
         }}
 
       """,
-
-      "instagram": f"""
+            "instagram": f"""
         ### Instrução:
            Por favor, faça um resumo detalhado do perfil do Instagram a partir do seguinte texto:
 
@@ -93,7 +92,7 @@ class Prompts:
               }}
 
         """,
-        "facebook" : f"""
+            "facebook": f"""
           ### Instrução:
           "Por favor, faça um resumo do perfil do Facebook  em formato JSON, a partir do seguinte texto:
           [{self.text}]
@@ -143,12 +142,12 @@ class Prompts:
         }},
         "informacoes_adicionais": "Informações adicionais sobre a página, incluindo termos de privacidade, cookies, e mais."
       }}  
-     """
-    }
+     """,
+        }
 
-  def get(self):
-    if self.web_sorce in list(self.prompts.keys()):
-      _prompt = self.prompts[self.web_sorce]
-      return _prompt
-    else:
-      return ValueError("Web source not supported")
+    def get(self):
+        if self.web_sorce in list(self.prompts.keys()):
+            _prompt = self.prompts[self.web_sorce]
+            return _prompt
+        else:
+            return ValueError("Web source not supported")

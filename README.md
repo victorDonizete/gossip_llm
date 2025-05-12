@@ -1,1 +1,1 @@
-# llm_lang
+# gossip_llm

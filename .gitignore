@@ -177,7 +177,7 @@ cython_debug/
 .vscode/
 
 # files of tests
-tests/
+test/
 
 # images
 shots/

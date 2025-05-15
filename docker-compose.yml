@@ -1,0 +1,47 @@
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    networks:
+      - app-network
+    volumes:
+      - .:/app
+      - sqlite_data:/app/data
+      - static_volume:/app/staticfiles
+    entrypoint: /app/entrypoint.sh
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SECRET_KEY=django-insecure-4s1x5a9j*yt*rv&wq8xcd#!*!%$tbua7fwogdip90$g)+(lgz+
+      - DJANGO_DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+      - PYTHONUNBUFFERED=1
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    networks:
+      - app-network
+
+volumes:
+  sqlite_data:
+  static_volume:
+  ollama_data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

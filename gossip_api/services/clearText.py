@@ -3,8 +3,6 @@ from PIL import Image
 import pytesseract
 import spacy
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
 nlp = spacy.load("pt_core_news_sm")
 
 

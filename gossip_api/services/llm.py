@@ -1,9 +1,11 @@
+import os
 import requests
 from gossip_api.services.prompts import Prompts
 
+ollama_url = os.environ.get("OLLAMA_URL", "http://ollama:11434")
 
 def call_llm(prompt, model="mistral"):
-    url = "http://localhost:11434/api/generate"
+    url = f"{ollama_url}/api/generate"
     payload = {
         "model": model,
         "prompt": prompt,

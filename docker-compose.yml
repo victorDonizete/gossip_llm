@@ -19,7 +19,10 @@ services:
       - CHROME_BIN=/usr/bin/google-chrome-stable
       - TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
       - PYTESSERACT_PATH=/usr/bin/tesseract
+      - OLLAMA_URL=http://ollama:11434 
     restart: on-failure
+    depends_on:
+      - ollama
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/"]
       interval: 30s

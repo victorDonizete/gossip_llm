@@ -8,7 +8,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     CHROME_BIN=/usr/bin/google-chrome-stable \
     TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata \
-    PYTESSERACT_PATH=/usr/bin/tesseract
+    PYTESSERACT_PATH=/usr/bin/tesseract \
+    OLLAMA_URL=http://ollama:11434
 
 # Install essential packages for repository setup
 RUN apt-get update && apt-get install -y --no-install-recommends \

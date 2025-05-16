@@ -1,3 +1,10 @@
+.config
+.local
+.pki
+.wdm
+.bash_history
+ollama_data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
@@ -14,9 +15,14 @@ import time
 
 load_dotenv()
 def web(url):
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless=new")# roda sem abrir janela
-    options.add_argument("--window-size=1920,1080")  # define o tamanho da janela
+    # Configure Chrome options for headless operation with Docker
+    options = Options()
+    options.add_argument("--headless") # roda sem abrir janela
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920,1080") # define o tamanho da janela
+    options.binary_location = "/opt/chrome-linux64/chrome" # caminho do chromeDriver
     # options.add_argument("--force-device-scale-factor=0.50")  # Zoom out (50%)
     # options.add_argument("--high-dpi-support=1")  # Ajuda com resoluções maiores
     driver = webdriver.Chrome(

@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-4s1x5a9j*yt*rv&wq8xcd#!*!%$tbua7fwogdip90$g)+(lgz+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "api.ce.oda.mat.br", "api.app.redecamara.com.br"]
 
 
 # Application definition
@@ -134,4 +134,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # CORS settings
 # CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_ORIGINS = ["http://localhost:3000",]
+CORS_ALLOW_ORIGINS = ["http://localhost:3000", "https://dev.redecamara.com.br", "https://app.redecamara.com.br"]

@@ -12,10 +12,13 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SECRET_KEY=django-insecure-4s1x5a9j*yt*rv&wq8xcd#!*!%$tbua7fwogdip90$g)+(lgz+
+      - DJANGO_SECRET_KEY=django-insecure-aip2-ok8Doh7iJ-ipaixa6wee2Bi-Sh6ahfoor7I-ngu7boo
       - DJANGO_DEBUG=True
       - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
       - PYTHONUNBUFFERED=1
+      - CHROME_BIN=/usr/bin/google-chrome-stable
+      - TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
+      - PYTESSERACT_PATH=/usr/bin/tesseract
     restart: on-failure
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/"]
@@ -26,10 +29,12 @@ services:
 
   ollama:
     image: ollama/ollama:latest
+    container_name: ollama
     ports:
       - "11434:11434"
     volumes:
-      - ollama_data:/root/.ollama
+      - ./ollama_data:/root/.ollama
+      - ./ollama-entrypoint.sh:/ollama-entrypoint.sh
     restart: unless-stopped
     environment:
       - OLLAMA_HOST=0.0.0.0
